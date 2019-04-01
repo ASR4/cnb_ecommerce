@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row banner">
+			<div>
+				<img src="/image/cnb.png"  />
+			</div>
+		</div>
+
+		<hr />
+
+		<div class="row">
+			 <a><img src="/image/cnb-about.png" class="img-responsive" /></a>
+		</div>
+
+		<hr />
+
+		<div class="row">
+			<div>
+				<img src="/image/partner.png"  />
+			</div>
+		</div>
+
+	</div>
+	<!-- end of container -->
+
+<div th:replace="common/header :: footer"/>
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

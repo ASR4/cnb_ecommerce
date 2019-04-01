@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-12">
+				<h2 class="section-headline">
+					<span>Catalog</span>
+					<hr/>				
+				</h2>
+			</div>
+		</div>
+		
+
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-xs-3">
+				<h3><label for="category">Category</label></h3>
+				<div class="list-group" id="category">
+					<a th:href="@{/bookshelf(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
+					</div>
+			</div>
+			
+			<div class="col-xs-9">
+				<div th:if="${emptyList}">
+					<h5 style="font-style: italic;">Oops, no result is found. Try
+						something else.</h5>
+				</div>
+
+				<table border="0" id="bookList">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="book-item" data-th-each="itemSku : ${skuList}" >
+							<td>
+								<div th:if="${itemSku != null}">
+									<div class="row" style="margin-bottom: 50px;">
+										<div class="col-xs-3">
+											<a th:href="@{/itemSkuDetail?id=}+${itemSku.masterSKU}"><img 
+												class="img-responsive shelf-book"
+												th:src="${itemSku.imageUrl}" /></a>
+										</div>
+										<div class="col-xs-9" >
+											<a th:href="@{/itemSkuDetail?id=}+${itemSku.masterSKU}">
+											<h4 th:text="${itemSku.product}"></h4></a> 
+												
+											<!-- model -->			
+											<span style="font-size: large; color: #db3208;">Model : </span> 
+											<span th:text="${itemSku.model}"></span><br/>
+												
+											<!-- brand -->		
+											<span style="font-size: large; color: #db3208;">Brand : </span> 
+											<span th:text="${itemSku.brand}"></span><br/>
+												
+											<!-- inventory -->	
+											<span style="font-size: large; color: #db3208;"> Inventory : </span>
+											<span th:text="${itemSku.inventory}"></span><br/>
+											
+											<!-- price -->	
+											<a th:href="@{/itemSkuDetail?id=}+${itemSku.masterSKU}"><span
+												style="font-size: large; color: #db3208;">Price : </span>$<span
+													th:text="${itemSku.price_CAD}"></span></a><br/>
+											
+											<!-- description -->	
+											<span style="font-size: large; color: #db3208;">Description : </span> 
+											<span th:utext="${#strings.abbreviate(itemSku.description, 1000)}"></span>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+<div th:replace="common/header :: footer"/>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>
